@@ -20,6 +20,14 @@ public class CuaSoChinh extends javax.swing.JFrame {
         BasicInternalFrameUI ui = (BasicInternalFrameUI) jInternalFrame1.getUI();
         ui.setNorthPane(null);
         setLocationRelativeTo(null);
+        manChinhPage.removeAll();
+        ThongKeView dangKi = new ThongKeView();
+        // Thêm UIDangKi vào ContentPane của manChinhPage
+        manChinhPage.add(dangKi.getContentPane());
+
+        // Cập nhật và vẽ lại manChinhPage
+        manChinhPage.revalidate();
+        manChinhPage.repaint();
     }
 
     @SuppressWarnings("unchecked")
@@ -419,9 +427,14 @@ public class CuaSoChinh extends javax.swing.JFrame {
     private void btnThongKeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnThongKeActionPerformed
         // TODO add your handling code here:
         manChinhPage.removeAll();
+        ThongKeView dangKi = new ThongKeView();
 
-//        UIthongke tk = new UIthongke();
-//        manChinhPage.add(tk).setVisible(true);
+        // Thêm UIDangKi vào ContentPane của manChinhPage
+        manChinhPage.add(dangKi.getContentPane());
+
+        // Cập nhật và vẽ lại manChinhPage
+        manChinhPage.revalidate();
+        manChinhPage.repaint();
 
     }//GEN-LAST:event_btnThongKeActionPerformed
 

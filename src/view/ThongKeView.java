@@ -53,6 +53,7 @@ public class ThongKeView extends javax.swing.JFrame {
     ThongKeService thongkeser = new ThongKeServiceImp();
 
     public ThongKeView() {
+        super("ThongKeView");
         initComponents();
         loadData();
         TongTien();

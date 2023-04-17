@@ -104,7 +104,7 @@ public class UIKhachHang extends javax.swing.JFrame {
         });
         jScrollPane1.setViewportView(table);
 
-        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 410, 1280, 280));
+        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 380, 1240, 280));
 
         btnThem.setText("THEM");
         btnThem.addActionListener(new java.awt.event.ActionListener() {
@@ -134,7 +134,7 @@ public class UIKhachHang extends javax.swing.JFrame {
                 btnTimKiemActionPerformed(evt);
             }
         });
-        jPanel1.add(btnTimKiem, new org.netbeans.lib.awtextra.AbsoluteConstraints(1220, 340, 140, 30));
+        jPanel1.add(btnTimKiem, new org.netbeans.lib.awtextra.AbsoluteConstraints(1080, 330, 140, 30));
         jPanel1.add(txtTen, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 140, 220, 30));
 
         jLabel4.setText("Tên Khách Hàng");
@@ -158,7 +158,7 @@ public class UIKhachHang extends javax.swing.JFrame {
         buttonGroup1.add(rdio_Ngung_HD);
         rdio_Ngung_HD.setText("Ngừng hoạt động");
         jPanel1.add(rdio_Ngung_HD, new org.netbeans.lib.awtextra.AbsoluteConstraints(1010, 210, 144, 20));
-        jPanel1.add(txtTenTim, new org.netbeans.lib.awtextra.AbsoluteConstraints(900, 340, 290, 30));
+        jPanel1.add(txtTenTim, new org.netbeans.lib.awtextra.AbsoluteConstraints(690, 330, 290, 30));
 
         buttonGroup2.add(rdio_Dang_HD1);
         rdio_Dang_HD1.setText("Ðang hoạt động");
@@ -167,7 +167,7 @@ public class UIKhachHang extends javax.swing.JFrame {
                 rdio_Dang_HD1ActionPerformed(evt);
             }
         });
-        jPanel1.add(rdio_Dang_HD1, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 350, -1, 20));
+        jPanel1.add(rdio_Dang_HD1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 360, -1, 20));
 
         buttonGroup2.add(rdio_Ngung_HD1);
         rdio_Ngung_HD1.setText("Ngừng hoạt động");
@@ -176,7 +176,7 @@ public class UIKhachHang extends javax.swing.JFrame {
                 rdio_Ngung_HD1ActionPerformed(evt);
             }
         });
-        jPanel1.add(rdio_Ngung_HD1, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 350, -1, 20));
+        jPanel1.add(rdio_Ngung_HD1, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 360, -1, 20));
 
         buttonGroup2.add(jRadioButton1);
         jRadioButton1.setText("All Data");
@@ -185,7 +185,7 @@ public class UIKhachHang extends javax.swing.JFrame {
                 jRadioButton1ActionPerformed(evt);
             }
         });
-        jPanel1.add(jRadioButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 350, -1, 20));
+        jPanel1.add(jRadioButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 360, -1, 20));
 
         jButton1.setText("Trước");
         jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 700, -1, -1));
@@ -198,16 +198,15 @@ public class UIKhachHang extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 1602, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 1315, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 299, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 888, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, 0))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 773, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(115, 115, 115))
         );
 
         pack();

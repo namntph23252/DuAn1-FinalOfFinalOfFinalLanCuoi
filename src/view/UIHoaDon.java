@@ -118,7 +118,6 @@ public class UIHoaDon extends javax.swing.JFrame {
         jScrollPane2 = new javax.swing.JScrollPane();
         tb_hoaDonCt = new javax.swing.JTable();
         btnXuatfile = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
         startDate = new com.toedter.calendar.JDateChooser();
         enDate = new com.toedter.calendar.JDateChooser();
         jLabel1 = new javax.swing.JLabel();
@@ -181,9 +180,6 @@ public class UIHoaDon extends javax.swing.JFrame {
             }
         });
         jPanel1.add(btnXuatfile, new org.netbeans.lib.awtextra.AbsoluteConstraints(1130, 30, -1, -1));
-
-        jButton2.setText("+ nhận đơn hàng");
-        jPanel1.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(840, 30, -1, -1));
 
         startDate.setDateFormatString("dd/MM/yyyy");
         jPanel1.add(startDate, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 250, 187, -1));
@@ -404,6 +400,7 @@ public class UIHoaDon extends javax.swing.JFrame {
             
             cell = row.createCell(7, CellType.STRING);
             cell.setCellValue("Nguoi Nhân Ðon");
+            
             List<HoaDonfinalViewModels> list = hoaDonService.getAll();
 
             if (list != null) {
@@ -494,7 +491,6 @@ public class UIHoaDon extends javax.swing.JFrame {
     private javax.swing.JButton btn_timMa;
     private javax.swing.JButton btn_timNgay;
     private com.toedter.calendar.JDateChooser enDate;
-    private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton5;

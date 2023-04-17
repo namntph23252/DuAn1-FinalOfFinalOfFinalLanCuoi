@@ -4,7 +4,13 @@
  */
 package view;
 
+import domainmodels.NguoiDung;
+import javax.security.auth.callback.ConfirmationCallback;
+import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 import javax.swing.plaf.basic.BasicInternalFrameUI;
+import service.NguoiDungService;
+import serviceimpl.NguoiDungServiceImpl;
 //import model.DangNhap;
 
 /**
@@ -13,18 +19,21 @@ import javax.swing.plaf.basic.BasicInternalFrameUI;
  */
 public class CuaSoChinh extends javax.swing.JFrame {
 
+    NguoiDungService dungService = new NguoiDungServiceImpl();
+
     public CuaSoChinh(String maNguoiDung, String tenNguoiDung) {
         initComponents();
         txt_tenNguoiDung.setText(tenNguoiDung);
+        txt_maNDung.setText(maNguoiDung);
         jInternalFrame1.setBorder(javax.swing.BorderFactory.createEmptyBorder(0, 0, 0, 0));
         BasicInternalFrameUI ui = (BasicInternalFrameUI) jInternalFrame1.getUI();
         ui.setNorthPane(null);
         setLocationRelativeTo(null);
+
         manChinhPage.removeAll();
         ThongKeView dangKi = new ThongKeView();
         // Thêm UIDangKi vào ContentPane của manChinhPage
         manChinhPage.add(dangKi.getContentPane());
-
         // Cập nhật và vẽ lại manChinhPage
         manChinhPage.revalidate();
         manChinhPage.repaint();
@@ -42,6 +51,7 @@ public class CuaSoChinh extends javax.swing.JFrame {
         jLabel3 = new javax.swing.JLabel();
         txt_tenNguoiDung = new javax.swing.JTextField();
         jButton1 = new javax.swing.JButton();
+        txt_maNDung = new javax.swing.JTextField();
         slidepage = new javax.swing.JPanel();
         jLabel19 = new javax.swing.JLabel();
         btnThongKe = new javax.swing.JButton();
@@ -53,7 +63,8 @@ public class CuaSoChinh extends javax.swing.JFrame {
         btnNhanVien = new javax.swing.JButton();
         btn_tacGIa = new javax.swing.JButton();
         btn_nhaXuatBan = new javax.swing.JButton();
-        btnDangXuat3 = new javax.swing.JButton();
+        btn_banHang = new javax.swing.JButton();
+        btnDangXuat4 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -89,12 +100,16 @@ public class CuaSoChinh extends javax.swing.JFrame {
         lbMaNdung.setForeground(new java.awt.Color(255, 255, 255));
         lbMaNdung.setText("-");
 
-        jButton1.setText("jButton1");
+        txt_tenNguoiDung.setEnabled(false);
+
+        jButton1.setText("Đăng xuất");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
             }
         });
+
+        txt_maNDung.setEnabled(false);
 
         javax.swing.GroupLayout menutrenLayout = new javax.swing.GroupLayout(menutren);
         menutren.setLayout(menutrenLayout);
@@ -108,6 +123,8 @@ public class CuaSoChinh extends javax.swing.JFrame {
                 .addGap(135, 135, 135)
                 .addComponent(lbMaNdung, javax.swing.GroupLayout.PREFERRED_SIZE, 164, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(txt_maNDung, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(29, 29, 29)
                 .addComponent(txt_tenNguoiDung, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jButton1)
@@ -125,7 +142,8 @@ public class CuaSoChinh extends javax.swing.JFrame {
                     .addComponent(lbMaNdung)
                     .addComponent(jLabel3)
                     .addComponent(txt_tenNguoiDung, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton1))
+                    .addComponent(jButton1)
+                    .addComponent(txt_maNDung, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap())
         );
 
@@ -245,15 +263,27 @@ public class CuaSoChinh extends javax.swing.JFrame {
             }
         });
 
-        btnDangXuat3.setBackground(new java.awt.Color(54, 33, 89));
-        btnDangXuat3.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        btnDangXuat3.setForeground(new java.awt.Color(255, 255, 255));
-        btnDangXuat3.setText("Thể Loại");
-        btnDangXuat3.setBorderPainted(false);
-        btnDangXuat3.setContentAreaFilled(false);
-        btnDangXuat3.addActionListener(new java.awt.event.ActionListener() {
+        btn_banHang.setBackground(new java.awt.Color(54, 33, 89));
+        btn_banHang.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        btn_banHang.setForeground(new java.awt.Color(255, 255, 255));
+        btn_banHang.setText("Bán Hàng");
+        btn_banHang.setBorderPainted(false);
+        btn_banHang.setContentAreaFilled(false);
+        btn_banHang.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnDangXuat3ActionPerformed(evt);
+                btn_banHangActionPerformed(evt);
+            }
+        });
+
+        btnDangXuat4.setBackground(new java.awt.Color(54, 33, 89));
+        btnDangXuat4.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        btnDangXuat4.setForeground(new java.awt.Color(255, 255, 255));
+        btnDangXuat4.setText("Thể Loại");
+        btnDangXuat4.setBorderPainted(false);
+        btnDangXuat4.setContentAreaFilled(false);
+        btnDangXuat4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnDangXuat4ActionPerformed(evt);
             }
         });
 
@@ -273,9 +303,14 @@ public class CuaSoChinh extends javax.swing.JFrame {
                     .addComponent(btnKhachHang, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(btnLichSu, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(btn_tacGIa, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btnDangXuat3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btn_banHang, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(btn_nhaXuatBan, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
+            .addGroup(slidepageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(slidepageLayout.createSequentialGroup()
+                    .addContainerGap()
+                    .addComponent(btnDangXuat4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addContainerGap()))
         );
         slidepageLayout.setVerticalGroup(
             slidepageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -300,9 +335,14 @@ public class CuaSoChinh extends javax.swing.JFrame {
                 .addComponent(btn_nhaXuatBan, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btn_tacGIa, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(btnDangXuat3, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(93, 93, 93)
+                .addComponent(btn_banHang, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(slidepageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, slidepageLayout.createSequentialGroup()
+                    .addContainerGap(637, Short.MAX_VALUE)
+                    .addComponent(btnDangXuat4, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(177, 177, 177)))
         );
 
         javax.swing.GroupLayout jInternalFrame1Layout = new javax.swing.GroupLayout(jInternalFrame1.getContentPane());
@@ -439,16 +479,12 @@ public class CuaSoChinh extends javax.swing.JFrame {
     }//GEN-LAST:event_btnThongKeActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        manChinhPage.removeAll();
-        // TODO add your handling code here:
-        UIDangKi dangKi = new UIDangKi();
-
-        // Thêm UIDangKi vào ContentPane của manChinhPage
-        manChinhPage.add(dangKi.getContentPane());
-
-        // Cập nhật và vẽ lại manChinhPage
-        manChinhPage.revalidate();
-        manChinhPage.repaint();
+        int choice = JOptionPane.showConfirmDialog(this, "ban muon dang xuat chu?");
+        if (choice == ConfirmationCallback.YES) {
+            this.dispose();
+            UIDangNhap dangNhap = new UIDangNhap();
+            dangNhap.setVisible(true);
+        }
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void btnExitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExitActionPerformed
@@ -470,17 +506,30 @@ public class CuaSoChinh extends javax.swing.JFrame {
 
     }//GEN-LAST:event_btn_nhaXuatBanActionPerformed
 
-    private void btnDangXuat3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDangXuat3ActionPerformed
+    private void btn_banHangActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_banHangActionPerformed
+        // TODO add your handling code here:
+        String maNdung = txt_maNDung.getText();
+        NguoiDung ng = this.dungService.getOne(maNdung);
+        String tenNdung = txt_tenNguoiDung.getText();
+        UIBanHang csh = new UIBanHang(maNdung, tenNdung);
+        csh.setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
+        csh.setVisible(true);
+
+    }//GEN-LAST:event_btn_banHangActionPerformed
+
+    private void btnDangXuat4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDangXuat4ActionPerformed
         // TODO add your handling code here:
         manChinhPage.removeAll();
+        // TODO add your handling code here:
         UIQLtheloai dangKi = new UIQLtheloai();
+
         // Thêm UIDangKi vào ContentPane của manChinhPage
         manChinhPage.add(dangKi.getContentPane());
 
         // Cập nhật và vẽ lại manChinhPage
         manChinhPage.revalidate();
         manChinhPage.repaint();
-    }//GEN-LAST:event_btnDangXuat3ActionPerformed
+    }//GEN-LAST:event_btnDangXuat4ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -522,7 +571,7 @@ public class CuaSoChinh extends javax.swing.JFrame {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnDangXuat3;
+    private javax.swing.JButton btnDangXuat4;
     private javax.swing.JButton btnDoiMK;
     private javax.swing.JButton btnExit;
     private javax.swing.JButton btnKhachHang;
@@ -531,6 +580,7 @@ public class CuaSoChinh extends javax.swing.JFrame {
     private javax.swing.JButton btnNhanVien;
     private javax.swing.JButton btnSanPham;
     private javax.swing.JButton btnThongKe;
+    private javax.swing.JButton btn_banHang;
     private javax.swing.JButton btn_nhaXuatBan;
     private javax.swing.JButton btn_tacGIa;
     private javax.swing.JButton jButton1;
@@ -541,6 +591,7 @@ public class CuaSoChinh extends javax.swing.JFrame {
     private javax.swing.JPanel manChinhPage;
     private javax.swing.JPanel menutren;
     private javax.swing.JPanel slidepage;
+    private javax.swing.JTextField txt_maNDung;
     private javax.swing.JTextField txt_tenNguoiDung;
     // End of variables declaration//GEN-END:variables
 }
